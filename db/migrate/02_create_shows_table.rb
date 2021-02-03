@@ -9,9 +9,9 @@ class CreateShowsTable < ActiveRecord::Migration[5.2]
       t.integer :year_done
       t.string :theatre_company
       t.string :notes
+      t.integer :user_id
     end
   end
 
 end
 
-#stretch goal - notes section (adding to table now, but will not be used in initial mvp)

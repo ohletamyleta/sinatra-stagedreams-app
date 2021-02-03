@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2) do
     t.integer "year_done"
     t.string "theatre_company"
     t.string "notes"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
