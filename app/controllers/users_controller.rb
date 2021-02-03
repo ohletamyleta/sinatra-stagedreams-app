@@ -26,21 +26,41 @@ class UsersController < ApplicationController
   erb :'shows/list_shows'
   end
 
-  # get '/login' do
+  get '/login' do
+    if Helpers.is_logged_in?(session)
+      redirect to '/list_shows'
+    end
+    erb :'/users/login'
+  end
 
-  # end
+  post '/login' do
+  @user = User.find_by(:username => params[:username])
 
-  # post '/login' do
+		  if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+		  redirect to "/list_shows"
+  else
+    redirect to '/login'
+  end
+  end
 
-  # end
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    if !@user.nil?
+      erb :'/users/show'
+    else 
+      redirect to '/login'
+    end
+  end
 
-  # get '/users/:slug' do
-
-  # end
-
-  # get '/logout' do
-
-  # end
+  get '/logout' do
+    if Helpers.is_logged_in?(session)
+      session.clear
+      else
+        redirect to '/'
+      end
+      redirect to '/login'
+  end
    
 
 
