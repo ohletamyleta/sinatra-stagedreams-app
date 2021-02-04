@@ -21,6 +21,7 @@ get '/shows/new' do
   else
     erb :'shows/new'
   end
+end
 
   
 

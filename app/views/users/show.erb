@@ -1,2 +1,7 @@
 <h1>This is a list of all of your shows, <%= @user.username %></h1>
 
+<% @user.shows.each do |show| %>
+  <h3> <%= show.title %> </h3>
+  <!-- need to break down ALL of the categories of data on this form -->
+  <br>
+  <% end %>
