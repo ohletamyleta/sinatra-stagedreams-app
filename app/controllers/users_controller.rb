@@ -8,14 +8,14 @@ class UsersController < ApplicationController
     if Helpers.is_logged_in?(session)
       redirect '/list_shows'
     else
-    erb :'/users/register'
+    erb :register
     end
   end
 
   post '/register' do
-    if Helpers.is_logged_in?(session)
-      redirect to '/list_shows'
-    end
+    # if Helpers.is_logged_in?(session)
+    #   redirect to '/list_shows'
+    # end
       if !(params.has_value?(""))
         @user = User.create(params)
       session[:user_id] = @user.id
@@ -23,22 +23,22 @@ class UsersController < ApplicationController
     else
       redirect to "/register"
     end
-  erb :'shows/list_shows'
+  erb :shows/list_shows
   end
 
   get '/login' do
     if Helpers.is_logged_in?(session)
       redirect to '/list_shows'
     end
-    erb :'/users/login'
+    erb :login
   end
 
   post '/login' do
   @user = User.find_by(:username => params[:username])
-  # @user &&
-		  if @user.authenticate(params[:password])
+ 
+		  if @user &&  @user.authenticate(params[:password])
       session[:user_id] = @user.id
-		  redirect to "/list_shows"
+		  redirect to "users/#{@user.id}"
   else
     redirect to '/login'
   end
