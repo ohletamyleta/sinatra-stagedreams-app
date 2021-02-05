@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     else
       redirect to "users/register"
     end
-    erb :shows/list_shows
+      redirect to "shows/list_shows"
   end
 
   get '/login' do
@@ -31,14 +31,14 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-  @user = User.find_by(:username => params[:username])
+    @user = User.find_by(:username => params[:username])
  
-		  if @user &&  @user.authenticate(params[:password])
+		if @user &&  @user.authenticate(params[:password])
       session[:user_id] = @user.id
 		  redirect to "users/#{@user.id}"
-  else
-    redirect to 'users/login'
-  end
+    else
+      redirect to 'users/login'
+    end
   end
 
   # get '/users/:slug' do
