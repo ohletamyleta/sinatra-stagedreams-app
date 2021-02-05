@@ -6,14 +6,14 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
 
-  def slug
-    self.username.gsub(" ","-")
-  end
+  # def slug
+  #   self.username.gsub(" ","-")
+  # end
 
-  def self.find_by_slug(slug)
-    name = slug.gsub("-"," ")
-    User.find_by(username: name)
-  end
+  # def self.find_by_slug(slug)
+  #   name = slug.gsub("-"," ")
+  #   User.find_by(username: name)
+  # end
 
 
 end
