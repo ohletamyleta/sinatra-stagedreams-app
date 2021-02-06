@@ -15,7 +15,7 @@ class ShowsController < ApplicationController
     redirect_if_not_logged_in
     if params[:title] != ""
       @show = Show.create(title: params[:title], author: params[:author], role: params[:role], style: params[:style], composer: params[:composer],
-              year_done: params[:year_done], theatre_company: params[:theatre_company], notes: params[:notes])
+              year_done: params[:year_done], theatre_company: params[:theatre_company], notes: params[:notes], user_id: current_user.id)
       #flash[:message] = "Show successfully created!" if @show.id
  
       redirect "/shows/#{@show.id}"
