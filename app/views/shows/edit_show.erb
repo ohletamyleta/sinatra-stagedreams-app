@@ -1,1 +1,34 @@
-<h1>Something has changed within me...</h1>
+<h1>Time for notes!  Edit your show here!</h1>
+
+<h3>"Something has changed within me... - Wicked"</h3>
+
+<form action='/shows/<%= @show.id %>' method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="title">Title:</label>
+  <input type="text" name="title">
+  <br>
+  <label for="author">Author:</label>
+  <input type="text" name="author">
+  <br>
+  <label for="Role">Role:</label>
+  <input type="text" name="role">
+  <br>
+  <label for="style">Style (play or musical):</label>
+  <input type="text" name="style">
+  <br>
+  <label for="composer">Composer:</label>
+  <input type="text" name="composer">
+  <br>
+  <label for="year_done">Year Done:</label>
+  <input type="text" name="year_done">
+  <br>
+  <label for="theatre_company">Theatre Company:</label>
+  <input type="text" name="theatre_company">
+  <br>
+  <label for="notes">Notes:</label>
+  <input type="text" name="notes">
+  <br>
+  <br>
+  <input type="submit" value="Recast Your Show!">
+</form>
+
