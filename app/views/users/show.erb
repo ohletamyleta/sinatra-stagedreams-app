@@ -1,7 +1,20 @@
 <h1>This is a list of all of your shows, <%= @user.username %></h1>
-
+ 
 <% @user.shows.each do |show| %>
-  <h3> <%= show.title %> </h3>
-  <!-- need to break down ALL of the categories of data on this form -->
+  <h3><strong><%= show.title %></strong></h3>
+  <p><%= show.author %></p>
+  <p><%= show.role %></p>
+  <p><%= show.style %></p>
+  <p><%= show.composer %></p>
+  <p><%= show.year_done %></p>
+  <p><%= show.theatre_company %></p>
+  <p><%= show.notes %></p>
+  <p><%= show.user_id %></p>
   <br>
   <% end %>
+
+
+  <form action="/logout" method="post">
+  Logout?
+  <input type="submit" name="Logout" >
+  </form>

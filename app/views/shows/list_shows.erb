@@ -1,1 +1,15 @@
 <h1>This is a list of all of the shows in the database - OMG omg you guys!</h1>
+
+<% @shows.each do |show| %>
+  <h3><strong><%= show.title%></strong></h3>
+
+  <p>Author: <%= show.author %></p>
+  <p>Role: <%= show.role %></p>
+  <p>Style: <%= show.style %></p>
+  <p>Composer: <%= show.composer %></p>
+  <p>Year Done: <%= show.year_done %></p>
+  <p>Theatre Company:<%= show.theatre_company %></p>
+  <p>Notes: <%= show.notes %></p>
+
+<% end %>
+
