@@ -32,15 +32,35 @@ class ShowsController < ApplicationController
   get 'shows/:id/edit' do
     redirect_if_not_logged_in
     @show = Show.find_by_id(params[:id])
-    
+    if authorized_to_edit?(@show)
+      erb :'/shows/edit_show'
+    else 
+      redirect "users/#{current_user.id}"
+    end
+  end
+
+  patch '/shows/:id' do
+    redirect_if_not_logged_in
+    @show = Show.find_by_id(params[:id])
+    if @show.user == current_user && params[:title] != "" 
+      @show.update(params[:show])
+      @show.save
+      redirect '/shows/#{@show.id}'
+    else
+      redirect 'users/#{current_user.id}'
+    end 
+  end
+
+  delete '/shows/:id' do
+    @show = Show.find_by_id(params[:id])
+    if authorized_to_edit?(@show)
+      @show.destroy
+    #flash[:message] = "Now life has killed the dream I dreamed ~ Les Miserables"
+     redirect '/shows/list_shows'
+    else
+      redirect '/shows/list_shows'
+    end 
+  end
 
   
-
-  
-
-
-
-
-
-
 end
