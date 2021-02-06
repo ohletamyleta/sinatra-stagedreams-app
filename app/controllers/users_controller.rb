@@ -5,29 +5,26 @@ class UsersController < ApplicationController
   end
 
   get '/register' do
-    if Helpers.is_logged_in?(session)
-      redirect '/list_shows'
-    else
-    erb :'users/register'
-    end
+  redirect_if_logged_in
+  erb :register
   end
 
   post '/register' do
     @user = User.new(params)
     if @user.save
       session[:user_id] = @user.id
+      #flash[:message] = "You have successfully created an account, #{@user.name}! Welcome!"
       redirect "/users/#{@user.id}"
     else
-      redirect to "users/register"
+      flash[:errors] = "Account creation failure: #{@user.errors.full_messages.to_sentence}"
+      redirect "/register"
     end
-      redirect to "shows/list_shows"
   end
 
+
   get '/login' do
-    if Helpers.is_logged_in?(session)
-      redirect to '/list_shows'
-    end
-    erb :'/users/login'
+    redirect_if_logged_in
+    erb :login
   end
 
   post '/login' do
@@ -35,29 +32,20 @@ class UsersController < ApplicationController
  
 		if @user &&  @user.authenticate(params[:password])
       session[:user_id] = @user.id
+
+     # flash[:message] = "Welcome, #{@user.name}!"
 		  redirect to "users/#{@user.id}"
     else
-      redirect to 'users/login'
+     # flash[:errors] = "Your credentials were invalid.  Please sign up or try again." 
+      redirect '/login'
     end
   end
 
-  # get '/users/:slug' do
-  #   @user = User.find_by_slug(params[:slug])
-  #   if !@user.nil?
-  #     erb :'/users/show'
-  #   else 
-  #     redirect to '/login'
-  #   end
-  # end
-
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
-    if !Helpers.is_logged_in?(session)
-      redirect 'users/login'
-    else
+      redirect_if_not_logged_in
 
       erb :'/users/show'
-    end 
   end
 
   get '/logout' do
