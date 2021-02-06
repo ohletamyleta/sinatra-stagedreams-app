@@ -10,9 +10,7 @@ class UsersController < ApplicationController
   end
 
   post '/register' do
-    @user = User.new(params)
-    #binding pry
-  
+    @user = User.new(params)  
     if @user.save
       session[:user_id] = @user.id
       #flash[:message] = "You have successfully created an account, #{@user.username}! Welcome!"
