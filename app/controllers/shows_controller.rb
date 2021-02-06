@@ -26,7 +26,8 @@ class ShowsController < ApplicationController
   end
 
   get 'shows/:id' do
-    @show = Show.find_by_id(params[:id])
+    @show = Show.find(params[:id])
+    binding.pry
     erb :'/shows/display_show'
   end
 
