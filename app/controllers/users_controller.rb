@@ -13,7 +13,8 @@ class UsersController < ApplicationController
     @user = User.new(params)  
     if @user.save
       session[:user_id] = @user.id
-      #flash[:message] = "You have successfully created an account, #{@user.username}! Welcome!"
+      #flash[:message] = "You have successfully created an account, #{@user.username}! Willkommen! And bienvenue! Welcome!
+#      Fremder, étranger, stranger! Glücklich zu sehen, Je suis enchanté, Happy to see you! Bleibe, reste, stay! Willkommen! And bienvenue! Welcome!"
       redirect "/users/#{@user.id}"
     else
       flash[:errors] = "Account creation failure: #{@user.errors.full_messages.to_sentence}"
