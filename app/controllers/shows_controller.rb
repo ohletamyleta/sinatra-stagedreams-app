@@ -11,13 +11,14 @@ class ShowsController < ApplicationController
     erb :'/shows/new'
   end
 
-  post '/shows/new' do
+  post '/shows' do
     redirect_if_not_logged_in
     if params[:title] != ""
-      @show = Show.create(title: params[:title], author: params[:author], role: params[:role], style: params[:style], composer: [:composer],
-              year_done: [:year_done], theatre_company: params[:theatre_company], notes: params[:notes])
+      @show = Show.create(title: params[:title], author: params[:author], role: params[:role], style: params[:style], composer: params[:composer],
+              year_done: params[:year_done], theatre_company: params[:theatre_company], notes: params[:notes])
       #flash[:message] = "Show successfully created!" if @show.id
-      redirect '/shows/#{show.id}'
+ 
+      redirect "/shows/#{@show.id}"
     else
       #flash[:errors] = "Something went wrong - all shows MUST have a title!"
       redirect '/shows/new'
