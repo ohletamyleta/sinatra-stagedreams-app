@@ -1,16 +1,16 @@
 <h1>This is a list of all of your shows, <%= @user.username %></h1>
  
 <% @user.shows.each do |show| %>
-  <h3><strong><%= show.title %></strong></h3>
-  <p><%= show.author %></p>
-  <p><%= show.role %></p>
-  <p><%= show.style %></p>
-  <p><%= show.composer %></p>
-  <p><%= show.year_done %></p>
-  <p><%= show.theatre_company %></p>
-  <p><%= show.notes %></p>
-  <p><%= show.user_id %></p>
-  <br>
+    <h3><strong><%= show.title%></strong></h3>
+    <br>
+    <p>Author: <%= show.author %></p>
+    <p>Role: <%= show.role %></p>
+    <p>Style: <%= show.style %></p>
+    <p>Composer: <%= show.composer %></p>
+    <p>Year Done: <%= show.year_done %></p>
+    <p>Theatre Company:<%= show.theatre_company %></p>
+    <p>Notes: <%= show.notes %></p>
+  
   <% end %>
 
 
