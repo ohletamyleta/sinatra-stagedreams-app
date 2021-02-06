@@ -11,9 +11,11 @@ class UsersController < ApplicationController
 
   post '/register' do
     @user = User.new(params)
+    #binding pry
+  
     if @user.save
       session[:user_id] = @user.id
-      #flash[:message] = "You have successfully created an account, #{@user.name}! Welcome!"
+      #flash[:message] = "You have successfully created an account, #{@user.username}! Welcome!"
       redirect "/users/#{@user.id}"
     else
       flash[:errors] = "Account creation failure: #{@user.errors.full_messages.to_sentence}"
