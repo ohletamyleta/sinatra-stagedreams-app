@@ -8,7 +8,7 @@ class ShowsController < ApplicationController
 
   get '/shows/new' do
     redirect_if_not_logged_in
-    erb :'shows/new'
+    erb :'/shows/new'
   end
 
   post '/shows/new' do
