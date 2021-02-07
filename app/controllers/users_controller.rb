@@ -14,10 +14,10 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       #flash[:message] = "You have successfully created an account, #{@user.username}! Willkommen! And bienvenue! Welcome!
-#      Fremder, étranger, stranger! Glücklich zu sehen, Je suis enchanté, Happy to see you! Bleibe, reste, stay! Willkommen! And bienvenue! Welcome!"
+    # Fremder, étranger, stranger! Glücklich zu sehen, Je suis enchanté, Happy to see you! Bleibe, reste, stay! Willkommen! And bienvenue! Welcome!"
       redirect "/users/#{@user.id}"
     else
-      flash[:errors] = "Account creation failure: #{@user.errors.full_messages.to_sentence}"
+      #flash[:errors] = "Account creation failure: #{@user.errors.full_messages.to_sentence}"
       redirect "/register"
     end
   end
@@ -33,10 +33,10 @@ class UsersController < ApplicationController
 		if @user &&  @user.authenticate(params[:password])
       session[:user_id] = @user.id
 
-     # flash[:message] = "Welcome, #{@user.name}!"
+      flash[:message] = "Welcome, #{@user.name}!"
 		  redirect to "users/#{@user.id}"
     else
-     # flash[:errors] = "Your credentials were invalid.  Please sign up or try again." 
+      flash[:errors] = "Your credentials were invalid.  Please sign up or try again." 
       redirect '/login'
     end
   end
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    # flash[:message] = "You'll be back, soon you'll see... -Hamilton"
+     #flash[:message] = "You'll be back, soon you'll see... -Hamilton"
       session.clear
       redirect '/'
   end
