@@ -10,28 +10,29 @@ class ShowsController < ApplicationController
     redirect_if_not_logged_in
     erb :'/shows/new'
   end
+  
 
   post '/shows' do
     redirect_if_not_logged_in
     if params[:title] != ""
       @show = Show.create(title: params[:title], author: params[:author], role: params[:role], style: params[:style], composer: params[:composer],
               year_done: params[:year_done], theatre_company: params[:theatre_company], notes: params[:notes], user_id: current_user.id)
-      flash[:message] = "Show successfully created!" if @show.id
+    #  flash[:message] = "Show successfully created!" if @show.id
  
       redirect '/shows/#{@show.id}'
     else
-      flash[:errors] = "Something went wrong - all shows MUST have a title!"
+     # flash[:errors] = "Something went wrong - all shows MUST have a title!"
       redirect '/shows/new'
     end
   end
 
-  get 'shows/:id' do
-    @show = Show.find(params[:id])
-    binding.pry
+  get '/shows/:id' do
+    @show = Show.find_by_id(params[:id])
+    #binding.pry
     erb :'/shows/display_show'
   end
 
-  get 'shows/:id/edit' do
+  get '/shows/:id/edit' do
     redirect_if_not_logged_in
     @show = Show.find_by_id(params[:id])
     if authorized_to_edit?(@show)
@@ -57,7 +58,7 @@ class ShowsController < ApplicationController
     @show = Show.find_by_id(params[:id])
     if authorized_to_edit?(@show)
       @show.destroy
-    flash[:message] = "Now life has killed the dream I dreamed ~ Les Miserables"
+    #flash[:message] = "Now life has killed the dream I dreamed ~ Les Miserables"
      redirect '/shows/list_shows'
     else
       redirect '/shows/list_shows'
