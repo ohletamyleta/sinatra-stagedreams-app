@@ -14,7 +14,10 @@ class ShowsController < ApplicationController
 
   post '/shows' do
     redirect_if_not_logged_in
-    if params[:title] != ""
+    if params[:title].empty?
+         # flash[:errors] = "Something went wrong - all shows MUST have a title!" 
+      redirect '/shows/new'
+    else
       @show = Show.create(
         :title => params[:title],
         :author => params[:author],
@@ -26,11 +29,8 @@ class ShowsController < ApplicationController
         :notes => params[:notes],
         :user_id => current_user.id)
     #  flash[:message] = "Show successfully created!" if @show.id
- 
       redirect '/shows/display_show'
-    else
-     # flash[:errors] = "Something went wrong - all shows MUST have a title!"
-      redirect '/shows/new'
+   
     end
   end
 
