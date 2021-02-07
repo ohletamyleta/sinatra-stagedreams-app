@@ -27,7 +27,7 @@ class ShowsController < ApplicationController
         :user_id => current_user.id)
     #  flash[:message] = "Show successfully created!" if @show.id
  
-      redirect '/shows/#{@show.id}'
+      redirect '/shows/display_show'
     else
      # flash[:errors] = "Something went wrong - all shows MUST have a title!"
       redirect '/shows/new'
