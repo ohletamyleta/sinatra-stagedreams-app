@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    flash[:message] = "You'll be back, soon you'll see... -Hamilton"
+    flash[:message] = "You'll be back, soon you'll see..."
     session.clear
     redirect '/'
   end
