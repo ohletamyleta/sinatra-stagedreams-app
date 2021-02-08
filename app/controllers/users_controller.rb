@@ -33,10 +33,10 @@ class UsersController < ApplicationController
 		if @user &&  @user.authenticate(params[:password])
       session[:user_id] = @user.id
 
-      flash[:message] = "Welcome, #{@user.username}!"
+      #flash[:message] = "Welcome, #{@user.username}!"
 		  redirect to "users/#{@user.id}"
     else
-      flash[:errors] = "Your credentials were invalid.  Please sign up or try again." 
+      #flash[:errors] = "Your credentials were invalid.  Please sign up or try again." 
       redirect '/login'
     end
   end
