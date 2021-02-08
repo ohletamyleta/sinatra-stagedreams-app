@@ -1,8 +1,9 @@
 <h1>This is a list of all of your shows, <%= @user.username %></h1>
- 
+<br><br>
+
 <% @user.shows.each do |show| %>
     <h3><strong><%= show.title%></strong></h3>
-    <br>
+    <br><br>
     <p>Author: <%= show.author %></p>
     <p>Role: <%= show.role %></p>
     <p>Style: <%= show.style %></p>
