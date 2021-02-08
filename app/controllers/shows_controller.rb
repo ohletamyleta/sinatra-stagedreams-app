@@ -21,8 +21,7 @@ class ShowsController < ApplicationController
          # flash[:errors] = "Something went wrong - all shows MUST have a title!" 
       redirect '/shows/new'
     else
-      @show = Show.create(
-        :title => params[:title],
+      @show = Show.create(:title => params[:title],
         :author => params[:author],
         :role => params[:role],
         :style => params[:style],
@@ -32,7 +31,7 @@ class ShowsController < ApplicationController
         :notes => params[:notes],
         :user_id => current_user.id)
     #  flash[:message] = "Show successfully created!" if @show.id
-      redirect '/shows/display_show'
+      redirect to '/shows/display_show'
    
     end
   end
@@ -70,7 +69,7 @@ class ShowsController < ApplicationController
   delete '/shows/:id/delete' do
     @show = Show.find(params[:id])
     if authorized_to_edit?(@show)
-      @show.destroy
+      @show.delete
     #flash[:message] = "Now life has killed the dream I dreamed ~ Les Miserables"
      redirect '/shows/list_shows'
     else
