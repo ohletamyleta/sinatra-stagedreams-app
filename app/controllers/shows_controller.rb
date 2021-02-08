@@ -1,8 +1,8 @@
 class ShowsController < ApplicationController
 
 
-  get '/list_shows' do
-    redirect_if_not_logged_in
+  get '/shows' do
+    #redirect_if_not_logged_in
     @shows = Show.all
     erb :'shows/list_shows'
   end
@@ -29,17 +29,18 @@ class ShowsController < ApplicationController
         :year_done => params[:year_done],
         :theatre_company => params[:theatre_company],
         :notes => params[:notes])
+        @show.user_id = @user.id
       @show.save
-    #  flash[:message] = "Show successfully created!" if @show.id
-      redirect to '/shows/:id'
+    # flash[:message] = "Show successfully created!" if @show.id
+    redirect "/shows/#{@show.id}"
    
     end
   end
 
   get '/shows/:id' do
     # set_show
-    binding.pry
-    @show = Show.find(params[:id])
+    #binding.pry
+    @show = Show.find_by(id: params[:id])
   
     erb :'/shows/display_show'
   end
@@ -58,7 +59,14 @@ class ShowsController < ApplicationController
     redirect_if_not_logged_in
     @show = Show.find(params[:id])
     if @show.user == current_user && params[:title] != "" 
-      @show.update(params[:show])
+      @show.update(:title => params[:title],
+      :author => params[:author],
+      :role => params[:role],
+      :style => params[:style],
+      :composer => params[:composer],
+      :year_done => params[:year_done],
+      :theatre_company => params[:theatre_company],
+      :notes => params[:notes])
       @show.save
       redirect to '/shows/#{@show.id}'
     else
