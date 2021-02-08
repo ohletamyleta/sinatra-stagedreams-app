@@ -14,16 +14,14 @@
 <% if authorized_to_edit?(@show) %>
   <a href="/shows/<%= @show.id %>/edit">Edit Show</a>
   <br><br>
-  <form class="" action="/shows/<%= @show.id %>" method="post">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" name="" value="Delete This Show">
-  </form>
-
-
-
 <% end %>
 
 <a href="/shows/new">Add A Show</a>
-<a href="/shows/list_shows">All Shows</a>
+<a href="/shows">All Shows</a>
 <a href="/">Back</a>
 <a href="/logout">Log Out</a>
+<br><br>
+<form class="" action="/shows/<%= @show.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" name="" value="Delete This Show">
+  </form>
