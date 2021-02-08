@@ -31,7 +31,7 @@ class ShowsController < ApplicationController
         :notes => params[:notes])
       @show.save
     #  flash[:message] = "Show successfully created!" if @show.id
-      redirect to '/shows/display_show'
+      redirect to '/shows/:id'
    
     end
   end
@@ -60,13 +60,13 @@ class ShowsController < ApplicationController
     if @show.user == current_user && params[:title] != "" 
       @show.update(params[:show])
       @show.save
-      redirect '/shows/#{@show.id}'
+      redirect to '/shows/#{@show.id}'
     else
       redirect 'users/#{current_user.id}'
     end 
   end
 
-  delete '/shows/:id/delete' do
+  delete '/shows/:id' do
     @show = Show.find(params[:id])
     if authorized_to_edit?(@show)
       @show.delete

@@ -1,30 +1,31 @@
-<h1>Time for notes!  Edit your show here!</h1>
+<h1>Time for notes!  Edit <%= @show.title %> here!</h1>
 
-<h3>"Something has changed within me... - Wicked"</h3>
-
+<h4>Something has changed within me...</h4>
+<h5><em>Wicked</em></h5>
+<br><br>
 <form action='/shows/<%= @show.id %>' method="post">
   <input type="hidden" name="_method" value="patch">
   <label for="title">Title:</label>
   <input type="text" name="title">
-  <br>
+  <br>  <br>
   <label for="author">Author:</label>
   <input type="text" name="author">
-  <br>
+  <br><br>
   <label for="Role">Role:</label>
   <input type="text" name="role">
-  <br>
+  <br>  <br>
   <label for="style">Style (play or musical):</label>
   <input type="text" name="style">
-  <br>
+  <br>  <br>
   <label for="composer">Composer:</label>
   <input type="text" name="composer">
-  <br>
+  <br>  <br>
   <label for="year_done">Year Done:</label>
   <input type="text" name="year_done">
-  <br>
+  <br>  <br>
   <label for="theatre_company">Theatre Company:</label>
   <input type="text" name="theatre_company">
-  <br>
+  <br>  <br>
   <label for="notes">Notes:</label>
   <textarea name="notes"  style="width:auto; height:auto;"><%= @show.notes %></textarea>
   <br>
