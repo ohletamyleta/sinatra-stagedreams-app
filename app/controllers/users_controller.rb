@@ -44,7 +44,11 @@ class UsersController < ApplicationController
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
     redirect_if_not_logged_in
-
+    @quotes_array = ["Dreams come and they go, but hold them and keep them and know that you need them - Waitress",
+    "Everybody's got dreams. I got plans. - Bonnie and Clyde",
+    "Arise And Seize The Day! - Newsies",
+    "I still have this faith in the truth of my dreams - Anastasia",
+    "First, think. Second, dream. Third, believe. And finally, dare. - Walt Disney"]
     erb :'/users/show'
   end
 
