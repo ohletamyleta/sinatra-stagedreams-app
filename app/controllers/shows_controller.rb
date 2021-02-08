@@ -38,7 +38,7 @@ class ShowsController < ApplicationController
   end
 
   get '/shows/:id' do
-    @show = Show.find(params[:id])
+    set_show
     #binding.pry
     erb :'/shows/display_show'
   end
@@ -76,5 +76,11 @@ class ShowsController < ApplicationController
     end 
   end
 
+
+  private
+
+    def set_show
+        @show = Show.find(params[:id])
+    end 
   
 end
