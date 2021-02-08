@@ -13,11 +13,11 @@ class UsersController < ApplicationController
     @user = User.new(params)  
     if @user.save
       session[:user_id] = @user.id
-      #flash[:message] = "You have successfully created an account, #{@user.username}! Willkommen! And bienvenue! Welcome!
-    # Fremder, étranger, stranger! Glücklich zu sehen, Je suis enchanté, Happy to see you! Bleibe, reste, stay! Willkommen! And bienvenue! Welcome!"
+      flash[:message] = "You have successfully created an account, #{@user.username}! Willkommen! And bienvenue! Welcome!
+      Fremder, étranger, stranger! Glücklich zu sehen, Je suis enchanté, Happy to see you! Bleibe, reste, stay! Willkommen! And bienvenue! Welcome!"
       redirect "/users/#{@user.id}"
     else
-      #flash[:errors] = "Account creation failure: #{@user.errors.full_messages.to_sentence}"
+      flash[:errors] = "Account creation failure: #{@user.errors.full_messages.to_sentence}"
       redirect "/register"
     end
   end
@@ -33,20 +33,19 @@ class UsersController < ApplicationController
 		if @user &&  @user.authenticate(params[:password])
       session[:user_id] = @user.id
 
-      #flash[:message] = "Welcome, #{@user.username}!"
+      flash[:message] = "Welcome, #{@user.username}!"
 		  redirect to "users/#{@user.id}"
     else
-      #flash[:errors] = "Your credentials were invalid.  Please sign up or try again." 
+      flash[:errors] = "Your credentials were invalid.  Please sign up or try again." 
       redirect '/login'
     end
   end
 
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
-    #binding.pry
-      redirect_if_not_logged_in
+    redirect_if_not_logged_in
 
-      erb :'/users/show'
+    erb :'/users/show'
   end
 
   get '/logout' do

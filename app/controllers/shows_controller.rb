@@ -2,7 +2,7 @@ class ShowsController < ApplicationController
 
 
   get '/shows' do
-    #redirect_if_not_logged_in
+    redirect_if_not_logged_in
     @shows = Show.all
     erb :"shows/list_shows"
   end
@@ -18,7 +18,7 @@ class ShowsController < ApplicationController
     redirect_if_not_logged_in
     @user = current_user
     if params[:title].empty?
-         # flash[:errors] = "Something went wrong - all shows MUST have a title!" 
+        flash[:errors] = "Something went wrong - all shows MUST have a title!" 
       redirect '/shows/new'
     else
       @show = Show.new(:title => params[:title],
@@ -31,15 +31,13 @@ class ShowsController < ApplicationController
         :notes => params[:notes])
         @show.user_id = @user.id
       @show.save
-    # flash[:message] = "Show successfully created!" if @show.id
+      flash[:message] = "Show successfully created!" if @show.id
     redirect "/shows/#{@show.id}"
    
     end
   end
 
   get '/shows/:id' do
-    # set_show
-    #binding.pry
     @show = Show.find_by(id: params[:id])
   
     erb :'/shows/display_show'
@@ -78,7 +76,7 @@ class ShowsController < ApplicationController
     @show = Show.find_by(id: params[:id])
     if authorized_to_edit?(@show)
       @show.delete
-    #flash[:message] = "Now life has killed the dream I dreamed ~ Les Miserables"
+    flash[:message] = "Now life has killed the dream I dreamed ~ Les Miserables"
      redirect '/shows/list_shows'
     else
       redirect '/shows/list_shows'
