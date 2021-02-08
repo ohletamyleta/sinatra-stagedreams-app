@@ -47,7 +47,7 @@ class ShowsController < ApplicationController
 
   get '/shows/:id/edit' do
     redirect_if_not_logged_in
-    @show = Show.find(params[:id])
+    @show = Show.find_by(id: params[:id]) @show = Show.find(params[:id])
     if authorized_to_edit?(@show)
       erb :'/shows/edit_show'
     else 
@@ -57,7 +57,7 @@ class ShowsController < ApplicationController
 
   patch '/shows/:id' do
     redirect_if_not_logged_in
-    @show = Show.find(params[:id])
+    @show = Show.find_by(id: params[:id])
     if @show.user == current_user && params[:title] != "" 
       @show.update(:title => params[:title],
       :author => params[:author],
@@ -75,7 +75,7 @@ class ShowsController < ApplicationController
   end
 
   delete '/shows/:id' do
-    @show = Show.find(params[:id])
+    @show = Show.find_by(id: params[:id])
     if authorized_to_edit?(@show)
       @show.delete
     #flash[:message] = "Now life has killed the dream I dreamed ~ Les Miserables"
@@ -89,7 +89,7 @@ class ShowsController < ApplicationController
   # private
 
   #   def set_show
-  #       @show = Show.find(params[:id])
+  #        @show = Show.find_by(id: params[:id])
   #   end 
   
 end
