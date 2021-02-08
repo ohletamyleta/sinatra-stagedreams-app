@@ -21,15 +21,15 @@ class ShowsController < ApplicationController
          # flash[:errors] = "Something went wrong - all shows MUST have a title!" 
       redirect '/shows/new'
     else
-      @show = Show.create(:title => params[:title],
+      @show = Show.new(:title => params[:title],
         :author => params[:author],
         :role => params[:role],
         :style => params[:style],
         :composer => params[:composer],
         :year_done => params[:year_done],
         :theatre_company => params[:theatre_company],
-        :notes => params[:notes],
-        :user_id => current_user.id)
+        :notes => params[:notes])
+      @show.save
     #  flash[:message] = "Show successfully created!" if @show.id
       redirect to '/shows/display_show'
    

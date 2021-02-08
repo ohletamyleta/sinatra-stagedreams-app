@@ -1,4 +1,4 @@
-<h1>This is a list of all of your shows, <%= @user.username %></h1>
+<h1>This is a list of all of your shows, <%= @user.username %>!</h1>
 <br><br>
 
 <% @user.shows.each do |show| %>
@@ -13,7 +13,7 @@
     <p>Notes: <%= show.notes %></p>
   
   <% end %>
-
+  <br>
   <a href="/shows/new">Add A Show</a>
   <a href="/">Back</a>
   <a href="/logout">Log Out</a>
