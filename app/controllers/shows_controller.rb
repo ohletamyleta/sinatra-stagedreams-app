@@ -2,20 +2,21 @@ class ShowsController < ApplicationController
 
 
   get '/list_shows' do
+    redirect_if_not_logged_in
     @shows = Show.all
-    # @user = current_user
-    # binding.pry
     erb :'shows/list_shows'
   end
 
   get '/shows/new' do
     redirect_if_not_logged_in
+    @user = current_user
     erb :'/shows/new'
   end
 
 
   post '/shows' do
     redirect_if_not_logged_in
+    @user = current_user
     if params[:title].empty?
          # flash[:errors] = "Something went wrong - all shows MUST have a title!" 
       redirect '/shows/new'
@@ -64,7 +65,7 @@ class ShowsController < ApplicationController
     end 
   end
 
-  delete '/shows/:id' do
+  delete '/shows/:id/delete' do
     @show = Show.find(params[:id])
     if authorized_to_edit?(@show)
       @show.destroy
