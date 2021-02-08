@@ -4,7 +4,7 @@ class ShowsController < ApplicationController
   get '/shows' do
     #redirect_if_not_logged_in
     @shows = Show.all
-    erb :'shows/list_shows'
+    erb :"shows/list_shows"
   end
 
   get '/shows/new' do
@@ -47,7 +47,7 @@ class ShowsController < ApplicationController
 
   get '/shows/:id/edit' do
     redirect_if_not_logged_in
-    @show = Show.find_by(id: params[:id]) @show = Show.find(params[:id])
+    @show = Show.find_by(id: params[:id])
     if authorized_to_edit?(@show)
       erb :'/shows/edit_show'
     else 
