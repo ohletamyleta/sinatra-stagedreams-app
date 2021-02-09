@@ -91,3 +91,6 @@ class ShowsController < ApplicationController
   #   end 
   
 end
+
+#<a href="/#{@show.id}/edit"><button>Edit Show</button></a> 
+#trying to link an edit button onto each show in the index
