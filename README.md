@@ -4,7 +4,7 @@ A Sinatra based application designed for theatre artists to track shows they hav
 
 LINK TO BLOG HERE
 
-LINK TO VIDEO DEMO HERE
+WALKTHROUGH VIDEO: https://youtu.be/VmWv6PXSJ1o
 
 ## Installation
 
