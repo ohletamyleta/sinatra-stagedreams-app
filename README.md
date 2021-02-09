@@ -2,7 +2,7 @@
 
 A Sinatra based application designed for theatre artists to track shows they have done or dream of doing.
 
-LINK TO BLOG HERE
+BLOG POST:  https://ohletamyleta.medium.com/my-first-sinatra-app-81f5f3f23f19 
 
 WALKTHROUGH VIDEO: https://youtu.be/VmWv6PXSJ1o
 
