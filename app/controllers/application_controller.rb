@@ -33,7 +33,7 @@ class ApplicationController < Sinatra::Base
 
     def redirect_if_not_logged_in
       if !logged_in?
-        #flash[:errors] = "You need a ticket for this performance!  Log in or register!"
+        flash[:errors] = "You need a ticket for this performance!  Log in or register!"
         redirect '/'
       end
     end
